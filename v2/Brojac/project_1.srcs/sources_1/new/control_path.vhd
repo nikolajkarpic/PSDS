@@ -60,18 +60,19 @@ begin
         
         process(state_reg, up_i, down_i)
         begin
+            up_down_o_s <= '0';
             case state_reg is
                 when idle =>
                     en_o <= '0';
                     if (up_i = '1' and down_i = '0') then
                         state_next <= up;
-                        up_down_o_s <= '0';
+                        --up_down_o_s <= '0';
                     elsif (up_i = '0' and down_i = '1') then
                         state_next <= down;
                         up_down_o_s <= '1';
                     else
                         state_next <= idle;
-                        up_down_o_s <= '0';
+                        --up_down_o_s <= '0';
                     end if;
                 when up =>
                     en_o <= '1';
@@ -80,7 +81,7 @@ begin
                         state_next <= idle;    
                     else
                         state_next <= up;
-                        up_down_o_s <= '0';
+                        --up_down_o_s <= '0';
                     end if;
                 when down =>
                     en_o <= '0';
